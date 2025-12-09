@@ -135,12 +135,6 @@ export default function App() {
   const [showQuickDayPicker, setShowQuickDayPicker] = useState(false);
   const fileInputRef = useRef(null);
 
-  // 触摸滑动相关状态
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const [swipeOffset, setSwipeOffset] = useState(0);
-  const [isSwiping, setIsSwiping] = useState(false);
-  const mainContentRef = useRef(null);
   const isInitialMount = useRef(true);
 
   useEffect(() => {
@@ -250,63 +244,6 @@ export default function App() {
     reader.readAsText(file);
   };
 
-  // 触摸滑动处理函数
-  const handleTouchStart = useCallback((e) => {
-    if (viewMode !== 'day') return;
-    setTouchStart(e.targetTouches[0].clientX);
-    setTouchEnd(null);
-    setSwipeOffset(0);
-  }, [viewMode]);
-
-  const handleTouchMove = useCallback((e) => {
-    if (viewMode !== 'day' || !touchStart) return;
-
-    const currentTouch = e.targetTouches[0].clientX;
-    const diff = currentTouch - touchStart;
-
-    setTouchEnd(currentTouch);
-
-    // 设置滑动偏移量，用于视觉反馈
-    // 限制最大偏移量为100px
-    const maxOffset = 100;
-    const offset = Math.max(-maxOffset, Math.min(maxOffset, diff * 0.5));
-    setSwipeOffset(offset);
-
-    // 如果滑动距离超过20px，标记为正在滑动
-    if (Math.abs(diff) > 20) {
-      setIsSwiping(true);
-    }
-  }, [viewMode, touchStart]);
-
-  const handleTouchEnd = useCallback(() => {
-    if (!touchStart || !touchEnd || viewMode !== 'day') {
-      setSwipeOffset(0);
-      setIsSwiping(false);
-      return;
-    }
-
-    const distance = touchStart - touchEnd;
-    const minSwipeDistance = 80; // 最小滑动距离
-
-    if (Math.abs(distance) >= minSwipeDistance) {
-      if (distance > 0 && currentDay < TOTAL_DAYS) {
-        // 向左滑动，切换到下一天
-        setCurrentDay(prev => Math.min(TOTAL_DAYS, prev + 1));
-      } else if (distance < 0 && currentDay > 1) {
-        // 向右滑动，切换到上一天
-        setCurrentDay(prev => Math.max(1, prev - 1));
-      }
-    }
-
-    // 重置触摸状态
-    setTimeout(() => {
-      setTouchStart(null);
-      setTouchEnd(null);
-      setSwipeOffset(0);
-      setIsSwiping(false);
-    }, 100);
-  }, [touchStart, touchEnd, viewMode, currentDay]);
-
   return (
     <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gradient-to-br from-stone-950 via-stone-900 to-stone-950 text-stone-100' : 'bg-gradient-to-br from-stone-50 via-white to-stone-50 text-stone-900'}`}>
       {/* 顶部导航 */}
@@ -382,15 +319,7 @@ export default function App() {
 
           {/* 主内容 */}
           <main
-            ref={mainContentRef}
-            className="lg:col-span-9 transition-transform pb-80 lg:pb-8"
-            style={{
-              transform: `translateX(${swipeOffset}px)`,
-              transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
-            }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+            className="lg:col-span-9 pb-80 lg:pb-8"
           >
             {showSettings && (
               <div className={`mb-8 p-6 rounded-2xl border ${darkMode ? 'bg-stone-900/40 border-stone-800' : 'bg-white border-stone-200'}`}>
