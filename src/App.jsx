@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import {
   BookOpen, Coffee, ChevronRight, ChevronDown, CheckCircle,
   Wind, Mountain, Droplets, Feather, Menu, X, Search,
-  Edit3, Bookmark, Moon, Sun, Download, Upload, Settings, Calendar
+  Edit3, Bookmark, Moon, Sun, Download, Upload, Settings
 } from 'lucide-react';
 
 
@@ -132,7 +132,6 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [showQuickDayPicker, setShowQuickDayPicker] = useState(false);
   const fileInputRef = useRef(null);
 
   const isInitialMount = useRef(true);
@@ -485,57 +484,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* 浮动日期选择按钮 - 仅在移动端显示 */}
-      {viewMode === 'day' && (
-        <>
-          <button
-            onClick={() => setShowQuickDayPicker(!showQuickDayPicker)}
-            className={`lg:hidden fixed bottom-6 right-6 z-40 p-4 rounded-full shadow-2xl transition-all ${darkMode ? 'bg-emerald-600 text-white hover:bg-emerald-500' : 'bg-emerald-600 text-white hover:bg-emerald-500'}`}
-          >
-            <Calendar size={24} />
-          </button>
-
-          {/* 浮动日期选择器面板 */}
-          {showQuickDayPicker && (
-            <>
-              {/* 遮罩层 */}
-              <div
-                className="lg:hidden fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
-                onClick={() => setShowQuickDayPicker(false)}
-              />
-
-              {/* 日期选择面板 */}
-              <div className={`lg:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl p-6 max-h-[70vh] overflow-y-auto ${darkMode ? 'bg-stone-900 border-t border-stone-800' : 'bg-white border-t border-stone-200'}`}>
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className={`text-lg font-bold ${darkMode ? 'text-stone-100' : 'text-stone-800'}`}>选择天数</h3>
-                  <button onClick={() => setShowQuickDayPicker(false)} className={`p-2 rounded-lg ${darkMode ? 'hover:bg-stone-800' : 'hover:bg-stone-100'}`}>
-                    <X size={20} />
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-8 gap-2 mb-4">
-                  {Array.from({ length: TOTAL_DAYS }, (_, i) => i + 1).map(day => (
-                    <button
-                      key={day}
-                      onClick={() => {
-                        setCurrentDay(day);
-                        setShowQuickDayPicker(false);
-                      }}
-                      className={`aspect-square rounded-lg text-sm font-medium transition-all min-h-[44px] ${currentDay === day ? (darkMode ? 'bg-emerald-600 text-white shadow-lg' : 'bg-emerald-600 text-white shadow-lg') : completedDays.includes(day) ? (darkMode ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-800' : 'bg-emerald-100 text-emerald-800 border border-emerald-200') : (darkMode ? 'bg-stone-800 text-stone-400 hover:bg-stone-700' : 'bg-stone-100 text-stone-600 hover:bg-stone-200')}`}
-                    >
-                      {day}
-                    </button>
-                  ))}
-                </div>
-
-                <div className={`text-center text-sm mt-4 ${darkMode ? 'text-stone-500' : 'text-stone-400'}`}>
-                  已完成 {completedDays.length}/{TOTAL_DAYS} 天
-                </div>
-              </div>
-            </>
-          )}
-        </>
-      )}
     </div>
   );
 }
