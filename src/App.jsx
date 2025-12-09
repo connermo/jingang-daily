@@ -318,7 +318,7 @@ export default function App() {
 
           {/* 主内容 */}
           <main
-            className="lg:col-span-9 pb-80 lg:pb-8"
+            className="lg:col-span-9 pb-16 lg:pb-8"
           >
             {showSettings && (
               <div className={`mb-8 p-6 rounded-2xl border ${darkMode ? 'bg-stone-900/40 border-stone-800' : 'bg-white border-stone-200'}`}>
