@@ -1,7 +1,7 @@
-﻿# ☯️ 道日课 (Tao Daily)
+# 🪷 金刚经日课 (Diamond Sutra Daily)
 
-> 结合现代商业案例与生活智慧的《道德经》深度修习工具。
-> A modern Tao Te Ching learning application with business insights and life wisdom.
+> 结合现代商业案例与生活智慧的《金刚经》深度修习工具。
+> A modern Diamond Sutra learning application with business insights and life wisdom.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![React](https://img.shields.io/badge/React-18-blue)
@@ -16,24 +16,24 @@
 
 ![index3](E:\08-daodejing\tao-daily\img\index3.png)
 
-**道日课** 是一款极简主义的《道德经》修习应用。与传统的阅读器不同，本项目致力于将古老的智慧与现代生活连接。
+**金刚经日课** 是一款极简主义的《金刚经》修习应用。与传统的阅读器不同，本项目致力于将古老的般若智慧与现代生活连接。
 
-应用内置了完整的 **81章** 内容，并将其划分为 **20天** 的修习计划。每一章不仅包含原文和今译，更核心的是提供了 **「心法解读」** 和 **「现代商业/生活案例」**，帮助用户在职场决策、生活处世中应用道的智慧。
+应用内置了完整的 **32分（品）** 内容，并将其划分为 **16天** 的修习计划。每一分不仅包含经文原文和白话今译，更核心的是提供了 **「心法解读」** 和 **「现代商业/生活案例」**，帮助用户在职场决策、生活处世中应用金刚般若智慧。
 
 所有数据（笔记、进度、收藏）均存储在浏览器本地（LocalStorage），注重隐私，无需联网登录即可使用。
 
 ## ✨ 核心功能
 
-* **📚 完整收录**：包含《道德经》全 81 章，分为四个阶段（道之体、道之用、德之修、道之终）。
+* **📚 完整收录**：包含《金刚经》全 32 分（品），分为四个阶段（般若之门、无住生心、应无所住、金刚智慧）。
 * **💡 深度解读**：
-    * **原文/今译**：精准的翻译对照。
-    * **心法**：提炼核心逻辑（如反脆弱、第一性原理、去中心化）。
-    * **案例**：结合 Apple、Amazon、华为等商业案例及职场情境分析。
+    * **经文原文/白话今译**：精准的翻译对照。
+    * **心法解读**：提炼核心般若智慧（如破相显性、无我利他、第一性原理）。
+    * **现代案例**：结合 Apple、Amazon、特斯拉等商业案例及职场情境分析。
 * **📝 沉浸式体验**：
     * **深色/浅色模式**：一键切换，舒适护眼。
-    * **随手笔记**：支持对每一章记录感悟，自动保存。
-    * **书签收藏**：一键收藏重点章节。
-* **📊 进度追踪**：可视化的 20 天修习进度条。
+    * **随手笔记**：支持对每一分记录感悟，自动保存。
+    * **书签收藏**：一键收藏重点经文。
+* **📊 进度追踪**：可视化的 16 天修习进度条。
 * **💾 数据安全**：
     * **完全离线**：数据存储在本地。
     * **备份/恢复**：支持导出 JSON 备份文件，防止数据丢失。
@@ -58,9 +58,9 @@
 ### 本地运行
 
 1.  **克隆项目**
-    `git clone https://github.com/redv678/tao-daily.git`
-    
-    `cd tao-daily`
+    `git clone https://github.com/redv678/jingang-daily.git`
+
+    `cd jingang-daily`
     
 2.  **安装依赖**
     
@@ -84,19 +84,16 @@
 2.  登录 Cloudflare: 
 `npx wrangler login`
 3.  部署:
-    
+
     `npm run build`
-    `npx wrangler pages deploy dist --project-name=tao-daily`
+    `npx wrangler pages deploy dist --project-name=jingang-daily`
 
 ## 📂 项目结构
 
 \\\
-tao-daily/
+jingang-daily/
  src/
-    components/      # UI 组件
-    data/            # (如果你将数据抽离)
-    TaoDailyApp.jsx  # 核心主应用逻辑
-    App.jsx          # 入口组件
+    App.jsx          # 核心主应用逻辑（包含金刚经数据和组件）
     main.jsx         # 渲染入口
     index.css        # Tailwind 引入
  public/              # 静态资源
@@ -107,7 +104,7 @@ tao-daily/
 ## 🤝 贡献指南
 
 欢迎提交 Issue 或 Pull Request！
-如果你有更好的案例解读或发现了翻译错误，欢迎贡献代码。
+如果你有更好的案例解读、心法理解或发现了翻译错误，欢迎贡献代码。
 
 1.  Fork 本仓库
 2.  新建 Feat_xxx 分支
