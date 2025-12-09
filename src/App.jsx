@@ -127,7 +127,7 @@ export default function App() {
   const [currentDay, setCurrentDay] = useState(1);
   const [completedDays, setCompletedDays] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [viewMode, setViewMode] = useState('day');
   const [searchQuery, setSearchQuery] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -244,7 +244,7 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gradient-to-br from-stone-950 via-stone-900 to-stone-950 text-stone-100' : 'bg-gradient-to-br from-stone-50 via-white to-stone-50 text-stone-900'}`}>
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-stone-950 text-stone-100' : 'bg-gradient-to-br from-stone-50 via-white to-stone-50 text-stone-900'}`}>
       {/* 顶部导航 */}
       <nav className={`backdrop-blur-md border-b ${darkMode ? 'bg-stone-950/80 border-stone-800' : 'bg-white/80 border-stone-200'}`}>
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
