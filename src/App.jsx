@@ -290,11 +290,11 @@ export default function App() {
               </div>
 
               <div className="space-y-2">
-                <button onClick={() => { setViewMode('day'); setSearchQuery(''); }} className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center gap-3 ${viewMode === 'day' ? (darkMode ? 'bg-emerald-900/30 text-emerald-400' : 'bg-emerald-100 text-emerald-800') : (darkMode ? 'hover:bg-stone-800 text-stone-400' : 'hover:bg-stone-100 text-stone-600')}`}>
+                <button onClick={() => { setViewMode('day'); setSearchQuery(''); if (window.innerWidth < 1024) setSidebarOpen(false); }} className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center gap-3 ${viewMode === 'day' ? (darkMode ? 'bg-emerald-900/30 text-emerald-400' : 'bg-emerald-100 text-emerald-800') : (darkMode ? 'hover:bg-stone-800 text-stone-400' : 'hover:bg-stone-100 text-stone-600')}`}>
                   <Coffee size={18} />
                   <span className="font-medium">每日一分</span>
                 </button>
-                <button onClick={() => { setViewMode('bookmarks'); setSearchQuery(''); }} className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center gap-3 ${viewMode === 'bookmarks' ? (darkMode ? 'bg-emerald-900/30 text-emerald-400' : 'bg-emerald-100 text-emerald-800') : (darkMode ? 'hover:bg-stone-800 text-stone-400' : 'hover:bg-stone-100 text-stone-600')}`}>
+                <button onClick={() => { setViewMode('bookmarks'); setSearchQuery(''); if (window.innerWidth < 1024) setSidebarOpen(false); }} className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center gap-3 ${viewMode === 'bookmarks' ? (darkMode ? 'bg-emerald-900/30 text-emerald-400' : 'bg-emerald-100 text-emerald-800') : (darkMode ? 'hover:bg-stone-800 text-stone-400' : 'hover:bg-stone-100 text-stone-600')}`}>
                   <Bookmark size={18} />
                   <span className="font-medium">我的收藏</span>
                   <span className={`ml-auto px-2 py-0.5 rounded-full text-xs ${darkMode ? 'bg-stone-800' : 'bg-stone-200'}`}>{bookmarks.length}</span>
@@ -306,7 +306,7 @@ export default function App() {
                   <h3 className={`text-sm font-bold mb-4 ${darkMode ? 'text-stone-400' : 'text-stone-600'}`}>选择天数</h3>
                   <div className="grid grid-cols-8 gap-1.5">
                     {Array.from({ length: TOTAL_DAYS }, (_, i) => i + 1).map(day => (
-                      <button key={day} onClick={() => setCurrentDay(day)} className={`aspect-square rounded-md text-xs font-medium transition-all min-h-[32px] ${currentDay === day ? (darkMode ? 'bg-emerald-600 text-white' : 'bg-emerald-600 text-white') : completedDays.includes(day) ? (darkMode ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-800' : 'bg-emerald-100 text-emerald-800 border border-emerald-200') : (darkMode ? 'bg-stone-800 text-stone-400 hover:bg-stone-700' : 'bg-stone-100 text-stone-600 hover:bg-stone-200')}`}>
+                      <button key={day} onClick={() => { setCurrentDay(day); if (window.innerWidth < 1024) setSidebarOpen(false); }} className={`aspect-square rounded-md text-xs font-medium transition-all min-h-[32px] ${currentDay === day ? (darkMode ? 'bg-emerald-600 text-white' : 'bg-emerald-600 text-white') : completedDays.includes(day) ? (darkMode ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-800' : 'bg-emerald-100 text-emerald-800 border border-emerald-200') : (darkMode ? 'bg-stone-800 text-stone-400 hover:bg-stone-700' : 'bg-stone-100 text-stone-600 hover:bg-stone-200')}`}>
                         {day}
                       </button>
                     ))}
